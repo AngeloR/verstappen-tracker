@@ -66,7 +66,7 @@ header {
 }
 
 #app { 
-    margin: 2rem 5%;
+    margin: 2rem 5% 0;
     display: flex;
     column-gap: 2rem;
     justify-content: space-between;
@@ -263,6 +263,12 @@ section {
             width: 100%;
         }
     }
+}
+
+
+footer {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 
