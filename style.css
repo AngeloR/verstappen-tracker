@@ -227,3 +227,23 @@ section {
 
     }
 }
+
+@media (max-width: 768px) {
+    header {
+        background-image: linear-gradient(
+          rgba(0, 0, 0, 0.1), 
+          rgba(0, 0, 0, 0.4)
+        ), url('assets/max.png'), url('assets/f1-hero.jpg');
+        background-repeat: no-repeat, no-repeat;
+        background-position: left top, right top, right bottom;
+        background-size: cover, cover;
+    }
+    #app {
+        flex-direction: column;
+        top: 0;
+
+        #sidebar {
+            width: 100%;
+        }
+    }
+}
