@@ -87,7 +87,6 @@
                     <thead>
                       <tr>
                         <th style="width: 30%">Session</th>
-                        <th style="width: 10%">Type</th>
                         <th>Max Verstappen</th>
                         <th>Lando Norris</th>
                         <th>Oscar Piastri</th>
@@ -222,9 +221,7 @@
         const tr = document.createElement('tr');
         const tdName = document.createElement('td');
         tdName.textContent = s.label;
-        const tdType = document.createElement('td');
-        tdType.innerHTML = `<span class="type">${s.type}</span>`;
-        tr.appendChild(tdName); tr.appendChild(tdType);
+        tr.appendChild(tdName);
         for (const d of DRIVERS){
           const td = document.createElement('td');
           const sel = document.createElement('select');
