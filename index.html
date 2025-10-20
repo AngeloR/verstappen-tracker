@@ -1,121 +1,344 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./style.css">
-    <title>Can Verstappen Make It Happen?</title>
-  </head>
-  <body>
-    <header>
-      <h1>Can Verstappen <span class="highlight">make it happen?</span></h1>
-      <p class="subtitle">Tracking Max Verstappens chances of winning 2025 WDC</p>
-    </header>
 
-    <div id="app">
-      <div id="main">
-        <section id="max-o-meter">
-          <div class="header">
-            <h2>The Max‑o‑Meter™</h2>
-            <p class="subtitle">Pulse of the Title Fight!</p>
-          </div>
-          <div class="content">
-            <p id="answer">Yes — Max can still make it happen! He needs 41 more points than the leader.</p>
-            <div id="max-stats">
-              <div>
-                <span class="stat-label">Leader Pts</span>
-                <span class="stat-value">346</span>
-              </div>
-              <div>
-                <span class="stat-label">Max Pts</span>
-                <span class="stat-value">306</span>
-              </div>
-              <div>
-                <span class="stat-label">Races Left</span>
-                <span class="stat-value">5</span>
-              </div>
-              <div>
-                <span class="stat-label">Sprints Left</span>
-                <span class="stat-value">2</span>
-              </div>
-              <div>
-                <span class="stat-label">Max Gain Left</span>
-                <span class="stat-value">141</span>
-              </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./style.css">
+  <title>Can Verstappen Make It Happen?</title>
+</head>
+
+<body>
+  <header>
+    <h1>Can Verstappen <span class="highlight">make it happen?</span></h1>
+    <p class="subtitle">Tracking Max Verstappens chances of winning 2025 WDC</p>
+  </header>
+
+  <div id="app">
+    <div id="main">
+      <section id="max-o-meter">
+        <div class="header">
+          <h2>The Max‑o‑Meter™</h2>
+          <p class="subtitle">Pulse of the Title Fight!</p>
+        </div>
+        <div class="content">
+          <p id="answer">Yes — Max can still make it happen! He needs 41 more points than the leader.</p>
+          <div id="max-stats">
+            <div>
+              <span class="stat-label">Leader Pts</span>
+              <span class="stat-value">346</span>
+            </div>
+            <div>
+              <span class="stat-label">Max Pts</span>
+              <span class="stat-value">306</span>
+            </div>
+            <div>
+              <span class="stat-label">Races Left</span>
+              <span class="stat-value">5</span>
+            </div>
+            <div>
+              <span class="stat-label">Sprints Left</span>
+              <span class="stat-value">2</span>
+            </div>
+            <div>
+              <span class="stat-label">Max Gain Left</span>
+              <span class="stat-value">141</span>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="recipe">
-      <div class="header">
-        <h2>Option 1</h2>
-        <p class="subtitle">2× Race wins + 0× Sprint wins = 50 pts</p>
-      </div>
-      <div class="content">
-        <div>
-<p class="title">what max needs to pull off</p>
-<ul>
-<li>Win 2 races and 0 sprints in the remaining calendar.</li>
-<li>Earn at least 50 additional points (wins-only math).</li>
-<li>Projected final: 356 pts (margin over current leader: 10).</li>
-<span class="note">Other events not listed above can be any result; more points improve margin.</span>
-</ul>
-</div>
-<div>
-Meanwhile, the papayas need to stay under these totals across the remaining 7 sessions:
-<ul>
-<li>Lando Norris can score ≤ 23 additional points</li>
-<li>Oscar Piastri can score ≤ 9 additional points</li>
-</ul>
-</div>
+      <section id="calculator">
+        <div class="header">
+          <h2>The Title Calculator</h2>
+          <p class="subtitle">Customize scoring and see what Max needs to do!</p>
+        </div>
+        <div class="content">
+          <div class="wrap">
+            <div class="grid">
+              <aside class="card" aria-labelledby="scoreboard-heading">
+                <h2 id="scoreboard-heading">Scoreboard</h2>
+                <div class="body">
+                  <div class="controls" style="margin-bottom:12px">
+                    <div class="field">
+                      <label for="startMax">Starting points – Max</label>
+                      <input id="startMax" type="number" min="0" value="306" />
+                    </div>
+                    <div class="field">
+                      <label for="startLando">Starting points – Norris</label>
+                      <input id="startLando" type="number" min="0" value="332" />
+                    </div>
+                    <div class="field">
+                      <label for="startOscar">Starting points – Piastri</label>
+                      <input id="startOscar" type="number" min="0" value="346" />
+                    </div>
+                  </div>
 
-<div class="examples">
-  <div>
-<p>NORRIS</p>
-<ul>
+                  <div class="scoreboard" id="scoreboard"></div>
+                </div>
+              </aside>
+              <section class="card" aria-labelledby="events-heading">
+                <h2 id="events-heading">Remaining Sessions</h2>
+                <div class="body">
+                  <div class="controls" style="margin-bottom:12px">
+                    <div class="field">
+                      <label for="season">Season</label>
+                      <input id="season" type="number" min="1950" value="2025" />
+                    </div>
+                    <div class="field">
+                      <label>Scoring (GP)</label>
+                      <div class="sub">25,18,15,12,10,8,6,4,2,1</div>
+                    </div>
+                    <div class="field">
+                      <label>Scoring (Sprint)</label>
+                      <div class="sub">8,7,6,5,4,3,2,1</div>
+                    </div>
+                  </div>
 
-<li>1× P2</li>
-<li>1× P8</li>
-<li>1× P10</li>
-</ul>
-  </div>
-  <div>
-<p>PIASTRI</p>
-<ul>
-<li>1× P6</li>
-<li>1× P10</li>
+                  <table aria-describedby="events-heading">
+                    <thead>
+                      <tr>
+                        <th style="width: 30%">Session</th>
+                        <th style="width: 10%">Type</th>
+                        <th>Max Verstappen</th>
+                        <th>Lando Norris</th>
+                        <th>Oscar Piastri</th>
+                      </tr>
+                    </thead>
+                    <tbody id="eventsTbody"></tbody>
+                  </table>
+                </div>
+              </section>
 
-</ul>
-</div>
-</div>
-</div>
-    </section>
-
-      </div>
-      <div id="sidebar">
-        <section class="rival-watch" id="mclaren">
-          <div class="header">
-            <h2>Papaya Watch</h2>
-            <p class="subtitle">MCLAREN</p>
-          </div>
-          <div class="content">
-            <div class="figure">
-              <img src="assets/lando.png" alt="Lando Norris">
-              <div class="caption">Lando Norris: 332 Pts (P2)</div>
+              
             </div>
-            <div class="figure">
-              <img src="assets/oscar.png" alt="Lando Norris">
-              <div class="caption">Oscar Piastri: 346 Pts (P1)</div>
-            </div>
           </div>
-        </section>
-      </div>
-      
-      
-
-    
-
+        </div>
+      </section>
+     
     </div>
-  </body>
+    <div id="sidebar">
+      <section class="rival-watch" id="mclaren">
+        <div class="header">
+          <h2>Papaya Watch</h2>
+          <p class="subtitle">MCLAREN</p>
+        </div>
+        <div class="content">
+          <div class="figure">
+            <img src="assets/lando.png" alt="Lando Norris">
+            <div class="caption">Lando Norris: 332 Pts (P2)</div>
+          </div>
+          <div class="figure">
+            <img src="assets/oscar.png" alt="Lando Norris">
+            <div class="caption">Oscar Piastri: 346 Pts (P1)</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+
+
+
+  </div>
+</body>
+<script>
+   // --- Config ---
+    const DRIVERS = [
+      { key: 'max', name: 'Max Verstappen' },
+      { key: 'lando', name: 'Lando Norris' },
+      { key: 'oscar', name: 'Oscar Piastri' },
+    ];
+
+    // Remaining 2025 run‑in (5 weekends; Brazil & Qatar have Sprints)
+    const SESSIONS = [
+      { id: 'mex-gp',   label: 'Mexico City Grand Prix', type: 'GP' },
+      { id: 'bra-spr',  label: 'Brazil Sprint',          type: 'Sprint' },
+      { id: 'bra-gp',   label: 'Brazilian Grand Prix',   type: 'GP' },
+      { id: 'lv-gp',    label: 'Las Vegas Grand Prix',   type: 'GP' },
+      { id: 'qat-spr',  label: 'Qatar Sprint',           type: 'Sprint' },
+      { id: 'qat-gp',   label: 'Qatar Grand Prix',       type: 'GP' },
+      { id: 'ad-gp',    label: 'Abu Dhabi Grand Prix',   type: 'GP' },
+    ];
+
+    // Points tables
+    const POINTS = {
+      GP:     [25,18,15,12,10,8,6,4,2,1],   // P1..P10
+      Sprint: [ 8, 7, 6, 5, 4,3,2,1],       // P1..P8
+    };
+
+    // --- State ---
+    const state = {
+      season: 2025,
+      start: { max: 306, lando: 332, oscar: 346 },
+      picks: {
+        "ad-gp": {max: '1', lando: '3', oscar: '2'},
+        "bra-gp": {lando: '2', max: '1', oscar: '3'},
+        "bra-spr": {max: '1', lando: '3', oscar: '2'},
+        "lv-gp": {max: '1', lando: '3', oscar: '2'},
+        "mex-gp": {max: '1', lando: '3', oscar: '3'},
+        "qat-gp": {max: '1', lando: '2', oscar: '3'},
+        "qat-spr": {max: '1', lando: '2', oscar: '3'}
+      }, // { sessionId: { driverKey: positionNumber|"dnf" } }
+    };
+
+    // Load from localStorage
+    const storageKey = 'f1-2025-runin-sim-v1';
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+      if (saved && typeof saved === 'object') {
+        Object.assign(state, saved);
+      }
+    } catch {}
+
+    // --- Helpers ---
+    function posOptions(type){
+      const maxPos = type === 'GP' ? 20 : 20; // allow choosing beyond points positions
+      const opts = [{ value: '', label: '—' }];
+      for (let p=1; p<=maxPos; p++) opts.push({ value: String(p), label: 'P'+p });
+      opts.push({ value: 'dnf', label: 'DNF / 0' });
+      return opts;
+    }
+
+    function pointsFor(type, pos){
+      if (!pos || pos === 'dnf') return 0;
+      const idx = Number(pos) - 1;
+      const table = POINTS[type] || [];
+      return table[idx] || 0;
+    }
+
+    function save(){ localStorage.setItem(storageKey, JSON.stringify(state)); }
+
+    function formatPts(n){ return n.toLocaleString(undefined, { maximumFractionDigits: 0 }); }
+
+    // --- Render events table ---
+    const tbody = document.getElementById('eventsTbody');
+
+    function renderRows(){
+      tbody.innerHTML = '';
+      for (const s of SESSIONS){
+        const tr = document.createElement('tr');
+        const tdName = document.createElement('td');
+        tdName.textContent = s.label;
+        const tdType = document.createElement('td');
+        tdType.innerHTML = `<span class="type">${s.type}</span>`;
+        tr.appendChild(tdName); tr.appendChild(tdType);
+        for (const d of DRIVERS){
+          const td = document.createElement('td');
+          const sel = document.createElement('select');
+          sel.setAttribute('aria-label', `${s.label} – ${d.name} finishing position`);
+          for (const opt of posOptions(s.type)){
+            const o = document.createElement('option');
+            o.value = opt.value; o.textContent = opt.label;
+            sel.appendChild(o);
+          }
+          const v = state.picks?.[s.id]?.[d.key] ?? '';
+          sel.value = v;
+          sel.addEventListener('change', () => {
+            state.picks[s.id] = state.picks[s.id] || {};
+            state.picks[s.id][d.key] = sel.value;
+            save();
+            updateTotals();
+          });
+          td.appendChild(sel);
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+    }
+
+    // --- Render scoreboard ---
+    const scoreboard = document.getElementById('scoreboard');
+
+    function computeRunInPoints(){
+      const totals = { max: 0, lando: 0, oscar: 0 };
+      for (const s of SESSIONS){
+        const picks = state.picks[s.id] || {};
+        for (const d of DRIVERS){
+          const pos = picks[d.key];
+          totals[d.key] += pointsFor(s.type, pos);
+        }
+      }
+      return totals;
+    }
+
+    function updateTotals(){
+      const runIn = computeRunInPoints();
+      const projected = {
+        max:   (Number(state.start.max)   || 0) + runIn.max,
+        lando: (Number(state.start.lando) || 0) + runIn.lando,
+        oscar: (Number(state.start.oscar) || 0) + runIn.oscar,
+      };
+      const entries = [
+        { key: 'max',   name: 'Max Verstappen', start: Number(state.start.max)||0, run: runIn.max, total: projected.max },
+        { key: 'lando', name: 'Lando Norris',   start: Number(state.start.lando)||0, run: runIn.lando, total: projected.lando },
+        { key: 'oscar', name: 'Oscar Piastri',  start: Number(state.start.oscar)||0, run: runIn.oscar, total: projected.oscar },
+      ];
+      entries.sort((a,b)=> b.total - a.total || b.run - a.run);
+      const leaderKey = entries[0]?.key;
+
+      scoreboard.innerHTML = '';
+      for (const e of entries){
+        const div = document.createElement('div');
+        const isLeader = e.key === leaderKey;
+        const isMaxLeader = leaderKey === 'max';
+        div.className = 'pill ' + (isLeader ? 'leader ' : '') + (isMaxLeader ? 'is-max-wdc' : 'is-not-wdc');
+        div.innerHTML = `
+          <div>
+            <strong>${e.name}</strong>
+            <div class="sub">Starting: <span class="pts">${formatPts(e.start)}</span> · Run‑in: <span class="pts">+${formatPts(e.run)}</span></div>
+          </div>
+          <div class="pts" title="Projected total">${formatPts(e.total)}</div>
+        `;
+        scoreboard.appendChild(div);
+      }
+    }
+
+    // --- Inputs wiring ---
+    const startMax = document.getElementById('startMax');
+    const startLando = document.getElementById('startLando');
+    const startOscar = document.getElementById('startOscar');
+
+    startMax.value = state.start.max;
+    startLando.value = state.start.lando;
+    startOscar.value = state.start.oscar;
+
+    for (const [el, key] of [[startMax,'max'], [startLando,'lando'], [startOscar,'oscar']]){
+      el.addEventListener('input', ()=>{ state.start[key] = Number(el.value)||0; save(); updateTotals(); });
+    }
+
+    // --- Presets ---
+    /*
+    document.getElementById('presetMaxWin').addEventListener('click', ()=>{
+      for (const s of SESSIONS){
+        state.picks[s.id] = state.picks[s.id] || {};
+        state.picks[s.id].max = '1';
+        // Give rivals sensible but beatable placements
+        if (s.type === 'GP'){
+          state.picks[s.id].lando = '2';
+          state.picks[s.id].oscar = '3';
+        } else { // Sprint
+          state.picks[s.id].lando = '2';
+          state.picks[s.id].oscar = '4';
+        }
+      }
+      save();
+      renderRows();
+      updateTotals();
+    });
+
+    document.getElementById('clearAll').addEventListener('click', ()=>{
+      state.picks = {};
+      save();
+      renderRows();
+      updateTotals();
+    });
+    */
+
+    // Init
+    renderRows();
+    updateTotals();
+</script>
+
 </html>
